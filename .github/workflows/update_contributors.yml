@@ -69,9 +69,12 @@ jobs:
           # Sort contributors by total contributions in descending order
           sorted_contributors = sorted(contributors.items(), key=lambda x: x[1]["contributions"], reverse=True)
 
-          # Generate markdown table
-          with open("README.md", "w") as f:
-              f.write("# Our Contributors\n\n")
+          # Generate markdown table with introduction
+          with open("profile/README.md", "w") as f:
+              f.write("# Svalbard Weather Information\n\n")
+              f.write("A trip planning web app for Svalbard, designed to provide real time weather information and forecast and help you plan your adventures safely and efficiently.\n\n")
+              f.write("Thank you to all our contributors for your hard work and dedication!\n\n")
+              f.write("## Our Contributors\n\n")
               f.write("Here is a list of our contributors, the repositories they have contributed to, and their total contributions:\n\n")
               f.write("| Avatar | Username | Repositories | Contributions |\n|--------|----------|--------------|---------------|\n")
               for login, info in sorted_contributors:
@@ -81,13 +84,13 @@ jobs:
                   f.write(f"| <img src='{info['avatar_url']}' width='50'> | [{login}]({info['html_url']}) | {repos_list} | {info['contributions']} |\n")
                   print(login)
 
-          print(f"Updated README.md with {len(contributors)} contributors.")
+          print(f"Updated profile/README.md with {len(contributors)} contributors.")
           EOF
 
       - name: Commit and push changes
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
-          git add README.md
+          git add profile/README.md
           git commit -m "Update contributors list" || echo "No changes to commit"
           git push
