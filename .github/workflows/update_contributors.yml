@@ -45,6 +45,7 @@ jobs:
 
           for repo in repos:
               repo_name = repo["name"]
+              repo_html_url = repo["html_url"]
               contributors_url = f"https://api.github.com/repos/{org}/{repo_name}/contributors?per_page=100"
               response = requests.get(contributors_url, headers=headers)
               if response.status_code == 200:
@@ -55,10 +56,11 @@ jobs:
                           contributors[login] = {
                               "html_url": contributor["html_url"],
                               "avatar_url": contributor["avatar_url"],
-                              "repos": set(),
+                              "repos": {},
                               "contributions": 0
                           }
-                      contributors[login]["repos"].add(repo_name)
+                      if repo_name not in contributors[login]["repos"]:
+                          contributors[login]["repos"][repo_name] = repo_html_url
                       contributors[login]["contributions"] += contributions
 
           # Sort contributors by total contributions in descending order
@@ -70,7 +72,7 @@ jobs:
               f.write("Here is a list of our contributors, the repositories they have contributed to, and their total contributions:\n\n")
               f.write("| Avatar | Username | Repositories | Contributions |\n|--------|----------|--------------|---------------|\n")
               for login, info in sorted_contributors:
-                  repos_list = ", ".join(sorted(info["repos"]))
+                  repos_list = ", ".join(f"[{repo_name}]({repo_url})" for repo_name, repo_url in info["repos"].items())
                   f.write(f"| <img src='{info['avatar_url']}' width='50'> | [{login}]({info['html_url']}) | {repos_list} | {info['contributions']} |\n")
                   print(login)
 
