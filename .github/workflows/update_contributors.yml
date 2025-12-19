@@ -75,6 +75,8 @@ jobs:
               f.write("Here is a list of our contributors, the repositories they have contributed to, and their total contributions:\n\n")
               f.write("| Avatar | Username | Repositories | Contributions |\n|--------|----------|--------------|---------------|\n")
               for login, info in sorted_contributors:
+                  if login == "actions-user":
+                      continue
                   repos_list = ", ".join(f"[{repo_name}]({repo_url})" for repo_name, repo_url in info["repos"].items())
                   f.write(f"| <img src='{info['avatar_url']}' width='50'> | [{login}]({info['html_url']}) | {repos_list} | {info['contributions']} |\n")
                   print(login)
