@@ -5,8 +5,10 @@ on:
     # Runs at 00:00 UTC every day
     - cron: '0 0 * * *'
   workflow_dispatch:  # Allows manual triggering
+
 permissions:
   contents: write
+
 jobs:
   update-contributors:
     runs-on: ubuntu-latest
@@ -39,7 +41,7 @@ jobs:
           repos_url = f"https://api.github.com/orgs/{org}/repos?per_page=100"
           repos = requests.get(repos_url, headers=headers).json()
 
-          contributors = set()
+          contributors = {}
 
           for repo in repos:
               repo_name = repo["name"]
@@ -47,14 +49,23 @@ jobs:
               response = requests.get(contributors_url, headers=headers)
               if response.status_code == 200:
                   for contributor in response.json():
-                      contributors.add((contributor["login"], contributor["html_url"], contributor["avatar_url"]))
+                      login = contributor["login"]
+                      if login not in contributors:
+                          contributors[login] = {
+                              "html_url": contributor["html_url"],
+                              "avatar_url": contributor["avatar_url"],
+                              "repos": set()
+                          }
+                      contributors[login]["repos"].add(repo_name)
 
           # Generate markdown table
           with open("README.md", "w") as f:
               f.write("# Our Contributors\n\n")
-              f.write("| Avatar | Username |\n|--------|----------|\n")
-              for login, html_url, avatar_url in sorted(contributors):
-                  f.write(f"| <img src='{avatar_url}' width='50'> | [{login}]({html_url}) |\n")
+              f.write("Here is a list of our contributors and the repositories they have contributed to:\n\n")
+              f.write("| Avatar | Username | Repositories |\n|--------|----------|--------------|\n")
+              for login, info in sorted(contributors.items()):
+                  repos_list = ", ".join(sorted(info["repos"]))
+                  f.write(f"| <img src='{info['avatar_url']}' width='50'> | [{login}]({info['html_url']}) | {repos_list} |\n")
                   print(login)
 
           print(f"Updated README.md with {len(contributors)} contributors.")
