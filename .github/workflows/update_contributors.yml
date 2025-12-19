@@ -50,22 +50,28 @@ jobs:
               if response.status_code == 200:
                   for contributor in response.json():
                       login = contributor["login"]
+                      contributions = contributor["contributions"]
                       if login not in contributors:
                           contributors[login] = {
                               "html_url": contributor["html_url"],
                               "avatar_url": contributor["avatar_url"],
-                              "repos": set()
+                              "repos": set(),
+                              "contributions": 0
                           }
                       contributors[login]["repos"].add(repo_name)
+                      contributors[login]["contributions"] += contributions
+
+          # Sort contributors by total contributions in descending order
+          sorted_contributors = sorted(contributors.items(), key=lambda x: x[1]["contributions"], reverse=True)
 
           # Generate markdown table
           with open("README.md", "w") as f:
               f.write("# Our Contributors\n\n")
-              f.write("Here is a list of our contributors and the repositories they have contributed to:\n\n")
-              f.write("| Avatar | Username | Repositories |\n|--------|----------|--------------|\n")
-              for login, info in sorted(contributors.items()):
+              f.write("Here is a list of our contributors, the repositories they have contributed to, and their total contributions:\n\n")
+              f.write("| Avatar | Username | Repositories | Contributions |\n|--------|----------|--------------|---------------|\n")
+              for login, info in sorted_contributors:
                   repos_list = ", ".join(sorted(info["repos"]))
-                  f.write(f"| <img src='{info['avatar_url']}' width='50'> | [{login}]({info['html_url']}) | {repos_list} |\n")
+                  f.write(f"| <img src='{info['avatar_url']}' width='50'> | [{login}]({info['html_url']}) | {repos_list} | {info['contributions']} |\n")
                   print(login)
 
           print(f"Updated README.md with {len(contributors)} contributors.")
