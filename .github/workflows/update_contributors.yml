@@ -33,6 +33,8 @@ jobs:
           import os
           import requests
 
+          os.makedirs("profile", exist_ok=True)
+
           org = os.getenv("ORG_NAME")
           token = os.getenv("GITHUB_TOKEN")
           headers = {"Authorization": f"token {token}"}
