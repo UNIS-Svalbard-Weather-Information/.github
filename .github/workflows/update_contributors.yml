@@ -54,6 +54,7 @@ jobs:
               f.write("| Avatar | Username |\n|--------|----------|\n")
               for login, html_url, avatar_url in sorted(contributors):
                   f.write(f"| <img src='{avatar_url}' width='50'> | [{login}]({html_url}) |\n")
+                  print(login)
 
           print(f"Updated README.md with {len(contributors)} contributors.")
           EOF
