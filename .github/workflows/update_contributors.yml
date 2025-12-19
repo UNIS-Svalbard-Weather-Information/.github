@@ -42,6 +42,7 @@ jobs:
           repos = requests.get(repos_url, headers=headers).json()
 
           contributors = {}
+          excluded_user = "github-actions"  # Define the user to exclude
 
           for repo in repos:
               repo_name = repo["name"]
@@ -51,6 +52,8 @@ jobs:
               if response.status_code == 200:
                   for contributor in response.json():
                       login = contributor["login"]
+                      if login == excluded_user:
+                          continue  # Skip the excluded user
                       contributions = contributor["contributions"]
                       if login not in contributors:
                           contributors[login] = {
