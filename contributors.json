@@ -75,8 +75,8 @@
             },
             ".github": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/.github",
-                "contributions": 20,
-                "percentage": 52.63
+                "contributions": 21,
+                "percentage": 52.5
             },
             "SWI": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/SWI",
@@ -99,7 +99,7 @@
                 "percentage": 100.0
             }
         },
-        "contributions": 1142,
+        "contributions": 1143,
         "name": "LouisPauchet"
     },
     {
