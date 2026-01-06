@@ -89,7 +89,10 @@ jobs:
                   repos_list = ", ".join(f"[{repo_name}]({repo_url})" for repo_name, repo_url in info["repos"].items())
                   f.write(f"| <img src='{info['avatar_url']}' width='50'> | [{login}]({info['html_url']}) | {repos_list} | {info['contributions']} |\n")
                   print(login)
-                  contribs.append(info.update({"name": login}))
+
+                  infoc = info
+                  infoc["name"] = login
+                  contribs.append(infoc)
           
           with open('contributors.json', 'w', encoding='utf-8') as f:
               json.dump(contribs, f, ensure_ascii=False, indent=4)
