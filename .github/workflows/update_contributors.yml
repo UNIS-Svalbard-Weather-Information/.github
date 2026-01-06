@@ -92,7 +92,7 @@ jobs:
                   contribs.append(info.update({"name": login}))
           
           with open('contributors.json', 'w', encoding='utf-8') as f:
-              json.dump(sorted_contributors, f, ensure_ascii=False, indent=4)
+              json.dump(contribs, f, ensure_ascii=False, indent=4)
 
           print(f"Updated profile/README.md with {len(contributors)} contributors.")
           EOF
