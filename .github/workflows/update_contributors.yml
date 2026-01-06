@@ -33,30 +33,36 @@ jobs:
           import os
           import requests
           import json
-
+          
           os.makedirs("profile", exist_ok=True)
-
+          
           org = os.getenv("ORG_NAME")
           token = os.getenv("GITHUB_TOKEN")
           headers = {"Authorization": f"token {token}"}
-
+          
           # Fetch all repositories in the organization
           repos_url = f"https://api.github.com/orgs/{org}/repos?per_page=100"
           repos = requests.get(repos_url, headers=headers).json()
-
+          
           contributors = {}
-          excluded_user = "github-actions"  # Define the user to exclude
-
+          excluded_user = "github-actions"
+          
+          # First, collect all contributors and their contributions per repo
+          repo_contributions = {}  # {repo_name: total_contributions}
+          
           for repo in repos:
               repo_name = repo["name"]
               repo_html_url = repo["html_url"]
               contributors_url = f"https://api.github.com/repos/{org}/{repo_name}/contributors?per_page=100"
               response = requests.get(contributors_url, headers=headers)
               if response.status_code == 200:
-                  for contributor in response.json():
+                  repo_contribs = response.json()
+                  repo_contributions[repo_name] = sum(c["contributions"] for c in repo_contribs)
+          
+                  for contributor in repo_contribs:
                       login = contributor["login"]
                       if login == excluded_user:
-                          continue  # Skip the excluded user
+                          continue
                       contributions = contributor["contributions"]
                       if login not in contributors:
                           contributors[login] = {
@@ -66,14 +72,25 @@ jobs:
                               "contributions": 0
                           }
                       if repo_name not in contributors[login]["repos"]:
-                          contributors[login]["repos"][repo_name] = repo_html_url
+                          contributors[login]["repos"][repo_name] = {
+                              "url": repo_html_url,
+                              "contributions": 0
+                          }
+                      contributors[login]["repos"][repo_name]["contributions"] += contributions
                       contributors[login]["contributions"] += contributions
-
+          
+          # Now, calculate the percentage for each contributor per repo
+          for login in contributors:
+              for repo_name in contributors[login]["repos"]:
+                  total_repo_contribs = repo_contributions[repo_name]
+                  user_repo_contribs = contributors[login]["repos"][repo_name]["contributions"]
+                  percentage = (user_repo_contribs / total_repo_contribs) * 100
+                  contributors[login]["repos"][repo_name]["percentage"] = round(percentage, 2)
+          
           # Sort contributors by total contributions in descending order
           sorted_contributors = sorted(contributors.items(), key=lambda x: x[1]["contributions"], reverse=True)
           contribs = []
-
-
+          
           # Generate markdown table with introduction
           with open("profile/README.md", "w") as f:
               f.write("# Svalbard Weather Information\n\n")
@@ -86,18 +103,21 @@ jobs:
               for login, info in sorted_contributors:
                   if login == "actions-user":
                       continue
-                  repos_list = ", ".join(f"[{repo_name}]({repo_url})" for repo_name, repo_url in info["repos"].items())
+                  repos_list = ", ".join(
+                      f"[{repo_name}]({info['repos'][repo_name]['url']}) ({info['repos'][repo_name]['percentage']}%)"
+                      for repo_name in info["repos"]
+                  )
                   f.write(f"| <img src='{info['avatar_url']}' width='50'> | [{login}]({info['html_url']}) | {repos_list} | {info['contributions']} |\n")
-                  print(login)
-
-                  infoc = info
+          
+                  infoc = info.copy()
                   infoc["name"] = login
                   contribs.append(infoc)
           
           with open('contributors.json', 'w', encoding='utf-8') as f:
               json.dump(contribs, f, ensure_ascii=False, indent=4)
-
+          
           print(f"Updated profile/README.md with {len(contributors)} contributors.")
+
           EOF
 
       - name: Commit and push changes
