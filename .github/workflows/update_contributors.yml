@@ -71,6 +71,9 @@ jobs:
           # Sort contributors by total contributions in descending order
           sorted_contributors = sorted(contributors.items(), key=lambda x: x[1]["contributions"], reverse=True)
 
+          with open('contributors.json', 'w', encoding='utf-8') as f:
+              json.dump(sorted_contributors, f, ensure_ascii=False, indent=4)
+
           # Generate markdown table with introduction
           with open("profile/README.md", "w") as f:
               f.write("# Svalbard Weather Information\n\n")
