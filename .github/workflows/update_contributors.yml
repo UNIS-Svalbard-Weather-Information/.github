@@ -71,9 +71,8 @@ jobs:
 
           # Sort contributors by total contributions in descending order
           sorted_contributors = sorted(contributors.items(), key=lambda x: x[1]["contributions"], reverse=True)
+          contribs = []
 
-          with open('contributors.json', 'w', encoding='utf-8') as f:
-              json.dump(sorted_contributors, f, ensure_ascii=False, indent=4)
 
           # Generate markdown table with introduction
           with open("profile/README.md", "w") as f:
@@ -90,6 +89,10 @@ jobs:
                   repos_list = ", ".join(f"[{repo_name}]({repo_url})" for repo_name, repo_url in info["repos"].items())
                   f.write(f"| <img src='{info['avatar_url']}' width='50'> | [{login}]({info['html_url']}) | {repos_list} | {info['contributions']} |\n")
                   print(login)
+                  contribs.append(info.update({"name": login}))
+          
+          with open('contributors.json', 'w', encoding='utf-8') as f:
+              json.dump(sorted_contributors, f, ensure_ascii=False, indent=4)
 
           print(f"Updated profile/README.md with {len(contributors)} contributors.")
           EOF
