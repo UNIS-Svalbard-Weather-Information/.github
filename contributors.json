@@ -3,33 +3,109 @@
         "html_url": "https://github.com/LouisPauchet",
         "avatar_url": "https://avatars.githubusercontent.com/u/124010914?v=4",
         "repos": {
-            "swi-frontend": "https://github.com/UNIS-Svalbard-Weather-Information/swi-frontend",
-            "swi-weather-configuration": "https://github.com/UNIS-Svalbard-Weather-Information/swi-weather-configuration",
-            "swi-metobs-backend": "https://github.com/UNIS-Svalbard-Weather-Information/swi-metobs-backend",
-            "swi-metobs-caching": "https://github.com/UNIS-Svalbard-Weather-Information/swi-metobs-caching",
-            "swi-mapcache-seaice": "https://github.com/UNIS-Svalbard-Weather-Information/swi-mapcache-seaice",
-            "swi-elevationapi": "https://github.com/UNIS-Svalbard-Weather-Information/swi-elevationapi",
-            "swi-deegree3-configuration": "https://github.com/UNIS-Svalbard-Weather-Information/swi-deegree3-configuration",
-            "swi-deegree3-mapserver": "https://github.com/UNIS-Svalbard-Weather-Information/swi-deegree3-mapserver",
-            "swi-aromearctic-caching": "https://github.com/UNIS-Svalbard-Weather-Information/swi-aromearctic-caching",
-            "swi-metobs-station-configuration": "https://github.com/UNIS-Svalbard-Weather-Information/swi-metobs-station-configuration",
-            "deployment_dev_env": "https://github.com/UNIS-Svalbard-Weather-Information/deployment_dev_env",
-            "swi-mapproxy": "https://github.com/UNIS-Svalbard-Weather-Information/swi-mapproxy",
-            "swi-mapproxy-configuration": "https://github.com/UNIS-Svalbard-Weather-Information/swi-mapproxy-configuration",
-            "swi-titiller": "https://github.com/UNIS-Svalbard-Weather-Information/swi-titiller",
-            "swi-map-layers": "https://github.com/UNIS-Svalbard-Weather-Information/swi-map-layers",
-            ".github": "https://github.com/UNIS-Svalbard-Weather-Information/.github",
-            "SWI": "https://github.com/UNIS-Svalbard-Weather-Information/SWI",
-            "postgis": "https://github.com/UNIS-Svalbard-Weather-Information/postgis"
+            "swi-frontend": {
+                "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-frontend",
+                "contributions": 3,
+                "percentage": 100.0
+            },
+            "swi-metobs-backend": {
+                "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-metobs-backend",
+                "contributions": 51,
+                "percentage": 100.0
+            },
+            "swi-metobs-caching": {
+                "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-metobs-caching",
+                "contributions": 922,
+                "percentage": 98.72
+            },
+            "swi-mapcache-seaice": {
+                "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-mapcache-seaice",
+                "contributions": 12,
+                "percentage": 100.0
+            },
+            "swi-elevationapi": {
+                "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-elevationapi",
+                "contributions": 6,
+                "percentage": 100.0
+            },
+            "swi-deegree3-configuration": {
+                "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-deegree3-configuration",
+                "contributions": 2,
+                "percentage": 100.0
+            },
+            "swi-deegree3-mapserver": {
+                "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-deegree3-mapserver",
+                "contributions": 5,
+                "percentage": 100.0
+            },
+            "swi-aromearctic-caching": {
+                "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-aromearctic-caching",
+                "contributions": 24,
+                "percentage": 100.0
+            },
+            "swi-metobs-station-configuration": {
+                "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-metobs-station-configuration",
+                "contributions": 4,
+                "percentage": 100.0
+            },
+            "deployment_dev_env": {
+                "url": "https://github.com/UNIS-Svalbard-Weather-Information/deployment_dev_env",
+                "contributions": 19,
+                "percentage": 100.0
+            },
+            "swi-mapproxy": {
+                "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-mapproxy",
+                "contributions": 11,
+                "percentage": 100.0
+            },
+            "swi-mapproxy-configuration": {
+                "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-mapproxy-configuration",
+                "contributions": 12,
+                "percentage": 100.0
+            },
+            "swi-titiller": {
+                "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-titiller",
+                "contributions": 5,
+                "percentage": 100.0
+            },
+            "swi-map-layers": {
+                "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-map-layers",
+                "contributions": 2,
+                "percentage": 100.0
+            },
+            ".github": {
+                "url": "https://github.com/UNIS-Svalbard-Weather-Information/.github",
+                "contributions": 19,
+                "percentage": 52.78
+            },
+            "SWI": {
+                "url": "https://github.com/UNIS-Svalbard-Weather-Information/SWI",
+                "contributions": 27,
+                "percentage": 100.0
+            },
+            "srm-riskmap-backend": {
+                "url": "https://github.com/UNIS-Svalbard-Weather-Information/srm-riskmap-backend",
+                "contributions": 4,
+                "percentage": 100.0
+            },
+            "postgis": {
+                "url": "https://github.com/UNIS-Svalbard-Weather-Information/postgis",
+                "contributions": 1,
+                "percentage": 100.0
+            }
         },
-        "contributions": 1123,
+        "contributions": 1129,
         "name": "LouisPauchet"
     },
     {
         "html_url": "https://github.com/JulesBoulard",
         "avatar_url": "https://avatars.githubusercontent.com/u/188697086?v=4",
         "repos": {
-            "swi-metobs-caching": "https://github.com/UNIS-Svalbard-Weather-Information/swi-metobs-caching"
+            "swi-metobs-caching": {
+                "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-metobs-caching",
+                "contributions": 12,
+                "percentage": 1.28
+            }
         },
         "contributions": 12,
         "name": "JulesBoulard"
