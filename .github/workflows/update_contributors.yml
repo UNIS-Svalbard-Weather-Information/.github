@@ -104,7 +104,7 @@ jobs:
                   if login == "actions-user":
                       continue
                   repos_list = ", ".join(
-                      f"[{repo_name}]({info['repos'][repo_name]['url']}) ({info['repos'][repo_name]['contributions']}%)"
+                      f"[{repo_name}]({info['repos'][repo_name]['url']}) ({info['repos'][repo_name]['contributions']})"
                       for repo_name in info["repos"]
                   )
                   f.write(f"| <img src='{info['avatar_url']}' width='50'> | [{login}]({info['html_url']}) | {repos_list} | {info['contributions']} |\n")
