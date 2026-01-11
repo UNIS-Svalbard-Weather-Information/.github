@@ -55,7 +55,7 @@
             },
             "swi-mapproxy": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-mapproxy",
-                "contributions": 11,
+                "contributions": 14,
                 "percentage": 100.0
             },
             "swi-mapproxy-configuration": {
@@ -76,7 +76,7 @@
             ".github": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/.github",
                 "contributions": 21,
-                "percentage": 46.67
+                "percentage": 45.65
             },
             "SWI": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/SWI",
@@ -97,9 +97,19 @@
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-production-deployment",
                 "contributions": 10,
                 "percentage": 100.0
+            },
+            "swi-wavewatch-caching": {
+                "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-wavewatch-caching",
+                "contributions": 24,
+                "percentage": 100.0
+            },
+            "swi-avalanche-caching": {
+                "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-avalanche-caching",
+                "contributions": 470,
+                "percentage": 98.74
             }
         },
-        "contributions": 1143,
+        "contributions": 1640,
         "name": "LouisPauchet"
     },
     {
@@ -110,9 +120,14 @@
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-metobs-caching",
                 "contributions": 12,
                 "percentage": 1.28
+            },
+            "swi-avalanche-caching": {
+                "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-avalanche-caching",
+                "contributions": 6,
+                "percentage": 1.26
             }
         },
-        "contributions": 12,
+        "contributions": 18,
         "name": "JulesBoulard"
     }
 ]
