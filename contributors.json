@@ -20,7 +20,7 @@
             },
             "swi-mapcache-seaice": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-mapcache-seaice",
-                "contributions": 22,
+                "contributions": 25,
                 "percentage": 100.0
             },
             "swi-elevationapi": {
@@ -55,12 +55,12 @@
             },
             "swi-mapproxy": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-mapproxy",
-                "contributions": 15,
+                "contributions": 17,
                 "percentage": 100.0
             },
             "swi-mapproxy-configuration": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-mapproxy-configuration",
-                "contributions": 21,
+                "contributions": 27,
                 "percentage": 100.0
             },
             "swi-titiller": {
@@ -76,7 +76,7 @@
             ".github": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/.github",
                 "contributions": 21,
-                "percentage": 24.71
+                "percentage": 24.42
             },
             "SWI": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/SWI",
@@ -105,11 +105,11 @@
             },
             "swi-avalanche-caching": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-avalanche-caching",
-                "contributions": 470,
-                "percentage": 98.74
+                "contributions": 478,
+                "percentage": 98.76
             }
         },
-        "contributions": 1672,
+        "contributions": 1691,
         "name": "LouisPauchet"
     },
     {
@@ -124,7 +124,7 @@
             "swi-avalanche-caching": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-avalanche-caching",
                 "contributions": 6,
-                "percentage": 1.26
+                "percentage": 1.24
             }
         },
         "contributions": 18,
