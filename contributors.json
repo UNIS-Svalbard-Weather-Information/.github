@@ -55,12 +55,12 @@
             },
             "swi-mapproxy": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-mapproxy",
-                "contributions": 17,
+                "contributions": 25,
                 "percentage": 100.0
             },
             "swi-mapproxy-configuration": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-mapproxy-configuration",
-                "contributions": 27,
+                "contributions": 38,
                 "percentage": 100.0
             },
             "swi-titiller": {
@@ -76,7 +76,7 @@
             ".github": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/.github",
                 "contributions": 21,
-                "percentage": 24.42
+                "percentage": 24.14
             },
             "SWI": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/SWI",
@@ -95,8 +95,8 @@
             },
             "swi-production-deployment": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-production-deployment",
-                "contributions": 10,
-                "percentage": 100.0
+                "contributions": 35,
+                "percentage": 89.74
             },
             "swi-wavewatch-caching": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-wavewatch-caching",
@@ -109,7 +109,7 @@
                 "percentage": 98.76
             }
         },
-        "contributions": 1691,
+        "contributions": 1735,
         "name": "LouisPauchet"
     },
     {
@@ -129,5 +129,18 @@
         },
         "contributions": 18,
         "name": "JulesBoulard"
+    },
+    {
+        "html_url": "https://github.com/apps/github-actions",
+        "avatar_url": "https://avatars.githubusercontent.com/in/15368?v=4",
+        "repos": {
+            "swi-production-deployment": {
+                "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-production-deployment",
+                "contributions": 2,
+                "percentage": 5.13
+            }
+        },
+        "contributions": 2,
+        "name": "github-actions[bot]"
     }
 ]
