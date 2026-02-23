@@ -55,7 +55,7 @@
             },
             "swi-mapproxy": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-mapproxy",
-                "contributions": 25,
+                "contributions": 29,
                 "percentage": 100.0
             },
             "swi-mapproxy-configuration": {
@@ -76,7 +76,7 @@
             ".github": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/.github",
                 "contributions": 21,
-                "percentage": 23.86
+                "percentage": 23.6
             },
             "SWI": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/SWI",
@@ -109,7 +109,7 @@
                 "percentage": 98.76
             }
         },
-        "contributions": 1735,
+        "contributions": 1739,
         "name": "LouisPauchet"
     },
     {
