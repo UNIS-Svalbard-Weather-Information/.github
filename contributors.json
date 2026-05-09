@@ -15,8 +15,8 @@
             },
             "swi-mapcache-seaice": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-mapcache-seaice",
-                "contributions": 25,
-                "percentage": 100.0
+                "contributions": 27,
+                "percentage": 93.1
             },
             "swi-elevationapi": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-elevationapi",
@@ -71,7 +71,7 @@
             ".github": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/.github",
                 "contributions": 21,
-                "percentage": 12.88
+                "percentage": 12.8
             },
             "SWI": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/SWI",
@@ -109,7 +109,7 @@
                 "percentage": 100.0
             }
         },
-        "contributions": 1761,
+        "contributions": 1763,
         "name": "LouisPauchet"
     },
     {
@@ -129,6 +129,19 @@
         },
         "contributions": 18,
         "name": "JulesBoulard"
+    },
+    {
+        "html_url": "https://github.com/snyk-bot",
+        "avatar_url": "https://avatars.githubusercontent.com/u/19733683?v=4",
+        "repos": {
+            "swi-mapcache-seaice": {
+                "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-mapcache-seaice",
+                "contributions": 2,
+                "percentage": 6.9
+            }
+        },
+        "contributions": 2,
+        "name": "snyk-bot"
     },
     {
         "html_url": "https://github.com/apps/github-actions",
