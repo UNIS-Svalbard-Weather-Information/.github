@@ -44,18 +44,28 @@ jobs:
           repos_url = f"https://api.github.com/orgs/{org}/repos?per_page=100"
           repos = requests.get(repos_url, headers=headers).json()
 
-          # Bots are identified via GitHub's own contributor "type" field (this alone
-          # already covers github-actions[bot], dependabot[bot], snyk-bot, renovate[bot],
-          # etc.), plus an explicit allowlist for accounts that are really bots but
-          # registered as plain GitHub users - polar-worker is a real user account used as
-          # this org's automation bot, so GitHub reports its type as "User" like any human;
-          # it has to be called out by login, not detected automatically. Anything
-          # classified as a bot that isn't in the allowlist is dropped entirely, not shown
-          # in either output - so noise bots never need to be named one by one to exclude.
+          # Bots are identified two ways:
+          # 1. GitHub's own contributor "type" field == "Bot" - catches genuine GitHub
+          #    Apps (dependabot[bot], renovate[bot], the real github-actions[bot] identity).
+          # 2. An explicit KNOWN_BOT_LOGINS list - needed because several automation
+          #    accounts in this org are plain GitHub *users*, not registered Apps, so
+          #    GitHub reports their type as "User" like any human (confirmed directly:
+          #    actions-user and snyk-bot both still showed up as regular contributors
+          #    when only the type field was checked). Add any future one here by login.
+          #
+          # ALLOWED_BOT_LOGINS is the only thing that decides what actually gets shown in
+          # the Bots table - everything else classified as a bot (either way, above) is
+          # dropped from both outputs entirely, not just hidden from the README.
+          KNOWN_BOT_LOGINS = {"actions-user", "snyk-bot", "github-actions", "github-actions[bot]"}
           ALLOWED_BOT_LOGINS = {"polar-worker"}
 
           def is_bot(contributor):
-              return contributor.get("type") == "Bot" or contributor["login"] in ALLOWED_BOT_LOGINS
+              login = contributor["login"]
+              return (
+                  contributor.get("type") == "Bot"
+                  or login in KNOWN_BOT_LOGINS
+                  or login in ALLOWED_BOT_LOGINS
+              )
 
           contributors = {}
           bots = {}
