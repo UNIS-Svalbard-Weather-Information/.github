@@ -6,22 +6,22 @@
             "swi-metobs-backend": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-metobs-backend",
                 "contributions": 86,
-                "percentage": 97.73
+                "percentage": 100.0
             },
             "swi-metobs-caching": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-metobs-caching",
                 "contributions": 950,
-                "percentage": 98.55
+                "percentage": 98.75
             },
             "swi-mapcache-seaice": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-mapcache-seaice",
                 "contributions": 34,
-                "percentage": 87.18
+                "percentage": 91.89
             },
             "swi-elevationapi": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-elevationapi",
                 "contributions": 12,
-                "percentage": 85.71
+                "percentage": 100.0
             },
             "swi-deegree3-configuration": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-deegree3-configuration",
@@ -36,7 +36,7 @@
             "swi-aromearctic-caching": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-aromearctic-caching",
                 "contributions": 31,
-                "percentage": 93.94
+                "percentage": 100.0
             },
             "swi-metobs-station-configuration": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-metobs-station-configuration",
@@ -61,7 +61,7 @@
             "swi-titiller": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-titiller",
                 "contributions": 12,
-                "percentage": 85.71
+                "percentage": 100.0
             },
             "swi-map-layers": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-map-layers",
@@ -70,8 +70,8 @@
             },
             ".github": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/.github",
-                "contributions": 21,
-                "percentage": 7.58
+                "contributions": 22,
+                "percentage": 7.89
             },
             "SWI": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/SWI",
@@ -90,8 +90,8 @@
             },
             "swi-production-deployment": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-production-deployment",
-                "contributions": 35,
-                "percentage": 89.74
+                "contributions": 112,
+                "percentage": 98.25
             },
             "swi-wavewatch-caching": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-wavewatch-caching",
@@ -101,7 +101,7 @@
             "swi-avalanche-caching": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-avalanche-caching",
                 "contributions": 484,
-                "percentage": 98.57
+                "percentage": 98.78
             },
             "swi-sentinel-processing": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-sentinel-processing",
@@ -109,8 +109,28 @@
                 "percentage": 100.0
             }
         },
-        "contributions": 1831,
-        "name": "LouisPauchet"
+        "contributions": 1909,
+        "name": "LouisPauchet",
+        "type": "User"
+    },
+    {
+        "html_url": "https://github.com/actions-user",
+        "avatar_url": "https://avatars.githubusercontent.com/u/65916846?v=4",
+        "repos": {
+            ".github": {
+                "url": "https://github.com/UNIS-Svalbard-Weather-Information/.github",
+                "contributions": 257,
+                "percentage": 92.11
+            },
+            "swi-production-deployment": {
+                "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-production-deployment",
+                "contributions": 2,
+                "percentage": 1.75
+            }
+        },
+        "contributions": 259,
+        "name": "actions-user",
+        "type": "User"
     },
     {
         "html_url": "https://github.com/JulesBoulard",
@@ -119,7 +139,7 @@
             "swi-metobs-caching": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-metobs-caching",
                 "contributions": 12,
-                "percentage": 1.24
+                "percentage": 1.25
             },
             "swi-avalanche-caching": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-avalanche-caching",
@@ -128,55 +148,8 @@
             }
         },
         "contributions": 18,
-        "name": "JulesBoulard"
-    },
-    {
-        "html_url": "https://github.com/apps/github-actions",
-        "avatar_url": "https://avatars.githubusercontent.com/in/15368?v=4",
-        "repos": {
-            "swi-metobs-backend": {
-                "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-metobs-backend",
-                "contributions": 2,
-                "percentage": 2.27
-            },
-            "swi-metobs-caching": {
-                "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-metobs-caching",
-                "contributions": 2,
-                "percentage": 0.21
-            },
-            "swi-mapcache-seaice": {
-                "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-mapcache-seaice",
-                "contributions": 2,
-                "percentage": 5.13
-            },
-            "swi-elevationapi": {
-                "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-elevationapi",
-                "contributions": 2,
-                "percentage": 14.29
-            },
-            "swi-aromearctic-caching": {
-                "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-aromearctic-caching",
-                "contributions": 2,
-                "percentage": 6.06
-            },
-            "swi-titiller": {
-                "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-titiller",
-                "contributions": 2,
-                "percentage": 14.29
-            },
-            "swi-production-deployment": {
-                "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-production-deployment",
-                "contributions": 2,
-                "percentage": 5.13
-            },
-            "swi-avalanche-caching": {
-                "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-avalanche-caching",
-                "contributions": 1,
-                "percentage": 0.2
-            }
-        },
-        "contributions": 15,
-        "name": "github-actions[bot]"
+        "name": "JulesBoulard",
+        "type": "User"
     },
     {
         "html_url": "https://github.com/snyk-bot",
@@ -185,10 +158,11 @@
             "swi-mapcache-seaice": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-mapcache-seaice",
                 "contributions": 3,
-                "percentage": 7.69
+                "percentage": 8.11
             }
         },
         "contributions": 3,
-        "name": "snyk-bot"
+        "name": "snyk-bot",
+        "type": "User"
     }
 ]
