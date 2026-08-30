@@ -4,7 +4,7 @@ on:
   schedule:
     # Runs at 00:00 UTC every day
     - cron: '0 0 * * *'
-  workflow_dispatch:  # Allows manual triggering
+  workflow_dispatch:    # Allows manual triggering
 
 permissions:
   contents: write
@@ -33,23 +33,34 @@ jobs:
           import os
           import requests
           import json
-          
+
           os.makedirs("profile", exist_ok=True)
-          
+
           org = os.getenv("ORG_NAME")
           token = os.getenv("GITHUB_TOKEN")
           headers = {"Authorization": f"token {token}"}
-          
+
           # Fetch all repositories in the organization
           repos_url = f"https://api.github.com/orgs/{org}/repos?per_page=100"
           repos = requests.get(repos_url, headers=headers).json()
-          
+
+          # Bots are identified via GitHub's own contributor "type" field (this alone
+          # already covers github-actions[bot], dependabot[bot], snyk-bot, renovate[bot],
+          # etc.), plus an explicit allowlist for accounts that are really bots but
+          # registered as plain GitHub users - polar-worker is a real user account used as
+          # this org's automation bot, so GitHub reports its type as "User" like any human;
+          # it has to be called out by login, not detected automatically. Anything
+          # classified as a bot that isn't in the allowlist is dropped entirely, not shown
+          # in either output - so noise bots never need to be named one by one to exclude.
+          ALLOWED_BOT_LOGINS = {"polar-worker"}
+
+          def is_bot(contributor):
+              return contributor.get("type") == "Bot" or contributor["login"] in ALLOWED_BOT_LOGINS
+
           contributors = {}
-          excluded_user = "github-actions"
-          
-          # First, collect all contributors and their contributions per repo
-          repo_contributions = {}  # {repo_name: total_contributions}
-          
+          bots = {}
+          repo_contributions = {}  # {repo_name: total_contributions}, shown entries only
+
           for repo in repos:
               repo_name = repo["name"]
               repo_html_url = repo["html_url"]
@@ -57,40 +68,57 @@ jobs:
               response = requests.get(contributors_url, headers=headers)
               if response.status_code == 200:
                   repo_contribs = response.json()
-                  repo_contributions[repo_name] = sum(c["contributions"] for c in repo_contribs)
-          
+
                   for contributor in repo_contribs:
                       login = contributor["login"]
-                      if login == excluded_user:
-                          continue
+
+                      if is_bot(contributor):
+                          if login not in ALLOWED_BOT_LOGINS:
+                              continue
+                          target = bots
+                      else:
+                          target = contributors
+
                       contributions = contributor["contributions"]
-                      if login not in contributors:
-                          contributors[login] = {
+                      repo_contributions[repo_name] = repo_contributions.get(repo_name, 0) + contributions
+
+                      if login not in target:
+                          target[login] = {
                               "html_url": contributor["html_url"],
                               "avatar_url": contributor["avatar_url"],
                               "repos": {},
                               "contributions": 0
                           }
-                      if repo_name not in contributors[login]["repos"]:
-                          contributors[login]["repos"][repo_name] = {
+                      if repo_name not in target[login]["repos"]:
+                          target[login]["repos"][repo_name] = {
                               "url": repo_html_url,
                               "contributions": 0
                           }
-                      contributors[login]["repos"][repo_name]["contributions"] += contributions
-                      contributors[login]["contributions"] += contributions
-          
-          # Now, calculate the percentage for each contributor per repo
-          for login in contributors:
-              for repo_name in contributors[login]["repos"]:
-                  total_repo_contribs = repo_contributions[repo_name]
-                  user_repo_contribs = contributors[login]["repos"][repo_name]["contributions"]
-                  percentage = (user_repo_contribs / total_repo_contribs) * 100
-                  contributors[login]["repos"][repo_name]["percentage"] = round(percentage, 2)
-          
-          # Sort contributors by total contributions in descending order
+                      target[login]["repos"][repo_name]["contributions"] += contributions
+                      target[login]["contributions"] += contributions
+
+          # Now, calculate the percentage for each contributor per repo (both groups)
+          for group in (contributors, bots):
+              for login in group:
+                  for repo_name in group[login]["repos"]:
+                      total_repo_contribs = repo_contributions[repo_name]
+                      user_repo_contribs = group[login]["repos"][repo_name]["contributions"]
+                      percentage = (user_repo_contribs / total_repo_contribs) * 100
+                      group[login]["repos"][repo_name]["percentage"] = round(percentage, 2)
+
+          # Sort each group by total contributions in descending order
           sorted_contributors = sorted(contributors.items(), key=lambda x: x[1]["contributions"], reverse=True)
-          contribs = []
-          
+          sorted_bots = sorted(bots.items(), key=lambda x: x[1]["contributions"], reverse=True)
+
+          def write_table(f, entries):
+              f.write("| Avatar | Username | Repositories | Contributions |\n|---------|-----------|-----------------|-----------------|\n")
+              for login, info in entries:
+                  repos_list = ", ".join(
+                      f"[{repo_name}]({info['repos'][repo_name]['url']}) ({info['repos'][repo_name]['contributions']})"
+                      for repo_name in info["repos"]
+                  )
+                  f.write(f"| <img src='{info['avatar_url']}' width='50'> | [{login}]({info['html_url']}) | {repos_list} | {info['contributions']} |\n")
+
           # Generate markdown table with introduction
           with open("profile/README.md", "w") as f:
               f.write("# Svalbard Weather Information\n\n")
@@ -99,24 +127,24 @@ jobs:
               f.write("Any bug report or general issues can be reported on [UNIS-Svalbard-Weather-Information/SWI](https://github.com/UNIS-Svalbard-Weather-Information/SWI).\n\n")
               f.write("## Our Contributors\n\n")
               f.write("Here is a list of our contributors, the repositories they have contributed to, and their total contributions:\n\n")
-              f.write("| Avatar | Username | Repositories | Contributions |\n|--------|----------|--------------|---------------|\n")
-              for login, info in sorted_contributors:
-                  if login == "actions-user":
-                      continue
-                  repos_list = ", ".join(
-                      f"[{repo_name}]({info['repos'][repo_name]['url']}) ({info['repos'][repo_name]['contributions']})"
-                      for repo_name in info["repos"]
-                  )
-                  f.write(f"| <img src='{info['avatar_url']}' width='50'> | [{login}]({info['html_url']}) | {repos_list} | {info['contributions']} |\n")
-          
-                  infoc = info.copy()
-                  infoc["name"] = login
-                  contribs.append(infoc)
-          
+              write_table(f, sorted_contributors)
+
+              if sorted_bots:
+                  f.write("\n## Our Bots\n\n")
+                  f.write("Automation that also contributes directly:\n\n")
+                  write_table(f, sorted_bots)
+
+          contribs = []
+          for login, info in sorted_contributors + sorted_bots:
+              infoc = info.copy()
+              infoc["name"] = login
+              infoc["type"] = "Bot" if login in bots else "User"
+              contribs.append(infoc)
+
           with open('contributors.json', 'w', encoding='utf-8') as f:
               json.dump(contribs, f, ensure_ascii=False, indent=4)
-          
-          print(f"Updated profile/README.md with {len(contributors)} contributors.")
+
+          print(f"Updated profile/README.md with {len(contributors)} contributors and {len(bots)} bots.")
 
           EOF
 
