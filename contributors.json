@@ -90,7 +90,7 @@
             },
             "swi-production-deployment": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-production-deployment",
-                "contributions": 112,
+                "contributions": 114,
                 "percentage": 100.0
             },
             "swi-wavewatch-caching": {
@@ -109,7 +109,7 @@
                 "percentage": 100.0
             }
         },
-        "contributions": 1910,
+        "contributions": 1912,
         "name": "LouisPauchet",
         "type": "User"
     },
