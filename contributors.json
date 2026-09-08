@@ -20,7 +20,7 @@
             },
             "swi-elevationapi": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-elevationapi",
-                "contributions": 12,
+                "contributions": 19,
                 "percentage": 100.0
             },
             "swi-deegree3-configuration": {
@@ -50,7 +50,7 @@
             },
             "swi-mapproxy": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-mapproxy",
-                "contributions": 30,
+                "contributions": 31,
                 "percentage": 100.0
             },
             "swi-mapproxy-configuration": {
@@ -100,8 +100,8 @@
             },
             "swi-avalanche-caching": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-avalanche-caching",
-                "contributions": 484,
-                "percentage": 98.78
+                "contributions": 491,
+                "percentage": 98.79
             },
             "swi-sentinel-processing": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-sentinel-processing",
@@ -109,7 +109,7 @@
                 "percentage": 100.0
             }
         },
-        "contributions": 1919,
+        "contributions": 1934,
         "name": "LouisPauchet",
         "type": "User"
     },
@@ -125,7 +125,7 @@
             "swi-avalanche-caching": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-avalanche-caching",
                 "contributions": 6,
-                "percentage": 1.22
+                "percentage": 1.21
             }
         },
         "contributions": 18,
