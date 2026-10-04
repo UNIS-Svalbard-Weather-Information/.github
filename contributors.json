@@ -5,13 +5,13 @@
         "repos": {
             "swi-metobs-backend": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-metobs-backend",
-                "contributions": 86,
+                "contributions": 123,
                 "percentage": 100.0
             },
             "swi-metobs-caching": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-metobs-caching",
-                "contributions": 950,
-                "percentage": 98.75
+                "contributions": 955,
+                "percentage": 98.76
             },
             "swi-mapcache-seaice": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-mapcache-seaice",
@@ -90,7 +90,7 @@
             },
             "swi-production-deployment": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-production-deployment",
-                "contributions": 114,
+                "contributions": 117,
                 "percentage": 100.0
             },
             "swi-wavewatch-caching": {
@@ -109,7 +109,7 @@
                 "percentage": 100.0
             }
         },
-        "contributions": 1934,
+        "contributions": 1979,
         "name": "LouisPauchet",
         "type": "User"
     },
@@ -120,7 +120,7 @@
             "swi-metobs-caching": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-metobs-caching",
                 "contributions": 12,
-                "percentage": 1.25
+                "percentage": 1.24
             },
             "swi-avalanche-caching": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-avalanche-caching",
