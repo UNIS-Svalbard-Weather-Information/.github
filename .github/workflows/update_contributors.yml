@@ -7,29 +7,36 @@ on:
   workflow_dispatch:    # Allows manual triggering
 
 permissions:
-  contents: write
+  contents: read
+
+concurrency:
+  group: update-contributors
+  cancel-in-progress: false
 
 jobs:
   update-contributors:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write # commits the regenerated profile README and contributors.json
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - name: Checkout repository  # zizmor: ignore[artipacked] credentials needed: the last step runs git push
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7
         with:
-          python-version: '3.10'
+          python-version: '3.13'
 
       - name: Install dependencies
-        run: pip install requests
+        run: pip install requests==2.34.2
 
       - name: Fetch and update contributors
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ORG_NAME: ${{ github.repository_owner }}
         run: |
-          python - <<EOF
+          python - <<'EOF'
           import os
           import requests
           import json
@@ -40,9 +47,24 @@ jobs:
           token = os.getenv("GITHUB_TOKEN")
           headers = {"Authorization": f"token {token}"}
 
-          # Fetch all repositories in the organization
-          repos_url = f"https://api.github.com/orgs/{org}/repos?per_page=100"
-          repos = requests.get(repos_url, headers=headers).json()
+          def fetch_pages(url, strict):
+              """All pages of a GitHub list endpoint. With strict, any error status fails the
+              run instead of being treated as an empty list."""
+              items, page = [], 1
+              while True:
+                  response = requests.get(f"{url}?per_page=100&page={page}", headers=headers, timeout=30)
+                  if response.status_code != 200:
+                      if strict:
+                          response.raise_for_status()
+                      return items
+                  batch = response.json()
+                  items.extend(batch)
+                  if len(batch) < 100:
+                      return items
+                  page += 1
+
+          # Fetch all repositories in the organization (every page; an API error fails the run)
+          repos = fetch_pages(f"https://api.github.com/orgs/{org}/repos", strict=True)
 
           # Bots are identified two ways:
           # 1. GitHub's own contributor "type" field == "Bot" - catches genuine GitHub
@@ -74,10 +96,9 @@ jobs:
           for repo in repos:
               repo_name = repo["name"]
               repo_html_url = repo["html_url"]
-              contributors_url = f"https://api.github.com/repos/{org}/{repo_name}/contributors?per_page=100"
-              response = requests.get(contributors_url, headers=headers)
-              if response.status_code == 200:
-                  repo_contribs = response.json()
+              contributors_url = f"https://api.github.com/repos/{org}/{repo_name}/contributors"
+              repo_contribs = fetch_pages(contributors_url, strict=False)
+              if repo_contribs:
 
                   for contributor in repo_contribs:
                       login = contributor["login"]
