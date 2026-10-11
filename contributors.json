@@ -5,22 +5,22 @@
         "repos": {
             "swi-metobs-backend": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-metobs-backend",
-                "contributions": 124,
+                "contributions": 133,
                 "percentage": 100.0
             },
             "swi-metobs-caching": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-metobs-caching",
-                "contributions": 955,
-                "percentage": 98.76
+                "contributions": 963,
+                "percentage": 98.77
             },
             "swi-mapcache-seaice": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-mapcache-seaice",
-                "contributions": 41,
+                "contributions": 52,
                 "percentage": 100.0
             },
             "swi-elevationapi": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-elevationapi",
-                "contributions": 19,
+                "contributions": 40,
                 "percentage": 100.0
             },
             "swi-deegree3-configuration": {
@@ -35,7 +35,7 @@
             },
             "swi-aromearctic-caching": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-aromearctic-caching",
-                "contributions": 31,
+                "contributions": 39,
                 "percentage": 100.0
             },
             "swi-metobs-station-configuration": {
@@ -50,17 +50,17 @@
             },
             "swi-mapproxy": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-mapproxy",
-                "contributions": 31,
+                "contributions": 41,
                 "percentage": 100.0
             },
             "swi-mapproxy-configuration": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-mapproxy-configuration",
-                "contributions": 38,
+                "contributions": 45,
                 "percentage": 100.0
             },
             "swi-titiller": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-titiller",
-                "contributions": 12,
+                "contributions": 24,
                 "percentage": 100.0
             },
             "swi-map-layers": {
@@ -75,7 +75,7 @@
             },
             "SWI": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/SWI",
-                "contributions": 27,
+                "contributions": 29,
                 "percentage": 100.0
             },
             "srm-riskmap-backend": {
@@ -100,16 +100,21 @@
             },
             "swi-avalanche-caching": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-avalanche-caching",
-                "contributions": 491,
-                "percentage": 98.79
+                "contributions": 502,
+                "percentage": 98.82
             },
             "swi-sentinel-processing": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-sentinel-processing",
                 "contributions": 10,
                 "percentage": 100.0
+            },
+            "swi-shared-workflows": {
+                "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-shared-workflows",
+                "contributions": 6,
+                "percentage": 100.0
             }
         },
-        "contributions": 1980,
+        "contributions": 2085,
         "name": "LouisPauchet",
         "type": "User"
     },
@@ -120,12 +125,12 @@
             "swi-metobs-caching": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-metobs-caching",
                 "contributions": 12,
-                "percentage": 1.24
+                "percentage": 1.23
             },
             "swi-avalanche-caching": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-avalanche-caching",
                 "contributions": 6,
-                "percentage": 1.21
+                "percentage": 1.18
             }
         },
         "contributions": 18,
