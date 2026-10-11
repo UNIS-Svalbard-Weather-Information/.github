@@ -45,6 +45,10 @@ jobs:
         with:
           client-id: ${{ vars.CONTRIBUTORS_APP_CLIENT_ID }}
           private-key: ${{ secrets.CONTRIBUTORS_APP_KEY }}
+          # Without `owner` the token is scoped to this repository only. Organisation-wide on
+          # purpose: every private repository must be counted, including ones created later,
+          # and the token is limited to read-only Metadata and lives for one hour.
+          owner: ${{ github.repository_owner }} # zizmor: ignore[github-app]
           permission-metadata: read
 
       - name: Fetch and update contributors
