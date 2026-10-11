@@ -7,29 +7,52 @@ on:
   workflow_dispatch:    # Allows manual triggering
 
 permissions:
-  contents: write
+  contents: read
+
+concurrency:
+  group: update-contributors
+  cancel-in-progress: false
 
 jobs:
   update-contributors:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
+    # Holds the GitHub App key. Restrict this environment to the main branch in the
+    # repository settings, otherwise any branch could carry a workflow that reads it.
+    environment: contributors
+    permissions:
+      contents: write # commits the regenerated profile README and contributors.json
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - name: Checkout repository  # zizmor: ignore[artipacked] credentials needed: the last step runs git push
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7
         with:
-          python-version: '3.10'
+          python-version: '3.13'
 
       - name: Install dependencies
-        run: pip install requests
+        run: pip install requests==2.34.2
+
+      # The default token only sees this (public) repository. To include the private
+      # repositories, install a GitHub App with read-only Metadata on them and set the
+      # CONTRIBUTORS_APP_CLIENT_ID variable and CONTRIBUTORS_APP_KEY secret; until then
+      # the run falls back to the public repositories. The token lives for one hour.
+      - name: Create a token that can read the private repositories
+        id: app-token
+        if: ${{ vars.CONTRIBUTORS_APP_CLIENT_ID != '' }}
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+        with:
+          client-id: ${{ vars.CONTRIBUTORS_APP_CLIENT_ID }}
+          private-key: ${{ secrets.CONTRIBUTORS_APP_KEY }}
+          permission-metadata: read
 
       - name: Fetch and update contributors
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ steps.app-token.outputs.token || secrets.GITHUB_TOKEN }}
           ORG_NAME: ${{ github.repository_owner }}
         run: |
-          python - <<EOF
+          python - <<'EOF'
           import os
           import requests
           import json
@@ -40,9 +63,24 @@ jobs:
           token = os.getenv("GITHUB_TOKEN")
           headers = {"Authorization": f"token {token}"}
 
-          # Fetch all repositories in the organization
-          repos_url = f"https://api.github.com/orgs/{org}/repos?per_page=100"
-          repos = requests.get(repos_url, headers=headers).json()
+          def fetch_pages(url, strict):
+              """All pages of a GitHub list endpoint. With strict, any error status fails the
+              run instead of being treated as an empty list."""
+              items, page = [], 1
+              while True:
+                  response = requests.get(f"{url}?per_page=100&page={page}", headers=headers, timeout=30)
+                  if response.status_code != 200:
+                      if strict:
+                          response.raise_for_status()
+                      return items
+                  batch = response.json()
+                  items.extend(batch)
+                  if len(batch) < 100:
+                      return items
+                  page += 1
+
+          # Fetch all repositories in the organization (every page; an API error fails the run)
+          repos = fetch_pages(f"https://api.github.com/orgs/{org}/repos", strict=True)
 
           # Bots are identified two ways:
           # 1. GitHub's own contributor "type" field == "Bot" - catches genuine GitHub
@@ -67,17 +105,32 @@ jobs:
                   or login in ALLOWED_BOT_LOGINS
               )
 
+          # Private repositories: the About page and the README are public. A private
+          # repository is listed by name only if that name is already public knowledge;
+          # all the others are merged into one anonymous entry. The address of a private
+          # repository would 404 for visitors, and the About page needs a url for every
+          # entry, so these entries link to the organisation page.
+          PUBLIC_PRIVATE_NAMES = {"swi-frontend"}
+          PRIVATE_GROUP = "Private repositories"
+          ORG_URL = f"https://github.com/{org}"
+          private_seen = 0
+
           contributors = {}
           bots = {}
           repo_contributions = {}  # {repo_name: total_contributions}, shown entries only
 
           for repo in repos:
-              repo_name = repo["name"]
-              repo_html_url = repo["html_url"]
-              contributors_url = f"https://api.github.com/repos/{org}/{repo_name}/contributors?per_page=100"
-              response = requests.get(contributors_url, headers=headers)
-              if response.status_code == 200:
-                  repo_contribs = response.json()
+              api_name = repo["name"]
+              if repo.get("private"):
+                  private_seen += 1
+                  repo_name = api_name if api_name in PUBLIC_PRIVATE_NAMES else PRIVATE_GROUP
+                  repo_html_url = ORG_URL
+              else:
+                  repo_name = api_name
+                  repo_html_url = repo["html_url"]
+              contributors_url = f"https://api.github.com/repos/{org}/{api_name}/contributors"
+              repo_contribs = fetch_pages(contributors_url, strict=False)
+              if repo_contribs:
 
                   for contributor in repo_contribs:
                       login = contributor["login"]
@@ -154,7 +207,9 @@ jobs:
           with open('contributors.json', 'w', encoding='utf-8') as f:
               json.dump(contribs, f, ensure_ascii=False, indent=4)
 
-          print(f"Updated profile/README.md with {len(contributors)} contributors and {len(bots)} bots.")
+          print(f"Updated profile/README.md with {len(contributors)} contributors and {len(bots)} bots ({private_seen} private repositories included).")
+          if private_seen == 0:
+              print("No private repository was visible: the token only sees public repositories.")
 
           EOF
 
