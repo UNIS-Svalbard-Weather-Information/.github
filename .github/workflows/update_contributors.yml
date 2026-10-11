@@ -45,6 +45,8 @@ jobs:
         with:
           client-id: ${{ vars.CONTRIBUTORS_APP_CLIENT_ID }}
           private-key: ${{ secrets.CONTRIBUTORS_APP_KEY }}
+          # Without `owner` the token is scoped to this repository only
+          owner: ${{ github.repository_owner }}
           permission-metadata: read
 
       - name: Fetch and update contributors
