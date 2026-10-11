@@ -3,6 +3,11 @@
         "html_url": "https://github.com/LouisPauchet",
         "avatar_url": "https://avatars.githubusercontent.com/u/124010914?v=4",
         "repos": {
+            "swi-frontend": {
+                "url": "https://github.com/UNIS-Svalbard-Weather-Information",
+                "contributions": 71,
+                "percentage": 40.11
+            },
             "swi-metobs-backend": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-metobs-backend",
                 "contributions": 133,
@@ -63,6 +68,11 @@
                 "contributions": 24,
                 "percentage": 100.0
             },
+            "Private repositories": {
+                "url": "https://github.com/UNIS-Svalbard-Weather-Information",
+                "contributions": 12,
+                "percentage": 100.0
+            },
             "swi-map-layers": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-map-layers",
                 "contributions": 2,
@@ -114,8 +124,22 @@
                 "percentage": 100.0
             }
         },
-        "contributions": 2085,
+        "contributions": 2168,
         "name": "LouisPauchet",
+        "type": "User"
+    },
+    {
+        "html_url": "https://github.com/josselinonduty",
+        "avatar_url": "https://avatars.githubusercontent.com/u/96398161?v=4",
+        "repos": {
+            "swi-frontend": {
+                "url": "https://github.com/UNIS-Svalbard-Weather-Information",
+                "contributions": 106,
+                "percentage": 59.89
+            }
+        },
+        "contributions": 106,
+        "name": "josselinonduty",
         "type": "User"
     },
     {
