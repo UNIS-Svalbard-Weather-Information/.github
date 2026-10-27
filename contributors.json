@@ -10,7 +10,7 @@
             },
             "swi-metobs-backend": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-metobs-backend",
-                "contributions": 147,
+                "contributions": 151,
                 "percentage": 100.0
             },
             "swi-metobs-caching": {
@@ -20,7 +20,7 @@
             },
             "swi-mapcache-seaice": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-mapcache-seaice",
-                "contributions": 55,
+                "contributions": 61,
                 "percentage": 100.0
             },
             "swi-elevationapi": {
@@ -70,7 +70,7 @@
             },
             "Private repositories": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information",
-                "contributions": 12,
+                "contributions": 14,
                 "percentage": 100.0
             },
             "swi-map-layers": {
@@ -124,7 +124,7 @@
                 "percentage": 100.0
             }
         },
-        "contributions": 2245,
+        "contributions": 2257,
         "name": "LouisPauchet",
         "type": "User"
     },
