@@ -5,8 +5,8 @@
         "repos": {
             "swi-frontend": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information",
-                "contributions": 96,
-                "percentage": 39.67
+                "contributions": 101,
+                "percentage": 40.08
             },
             "swi-metobs-backend": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-metobs-backend",
@@ -20,12 +20,12 @@
             },
             "swi-mapcache-seaice": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-mapcache-seaice",
-                "contributions": 61,
+                "contributions": 62,
                 "percentage": 100.0
             },
             "swi-elevationapi": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-elevationapi",
-                "contributions": 40,
+                "contributions": 41,
                 "percentage": 100.0
             },
             "swi-deegree3-configuration": {
@@ -124,7 +124,7 @@
                 "percentage": 100.0
             }
         },
-        "contributions": 2268,
+        "contributions": 2275,
         "name": "LouisPauchet",
         "type": "User"
     },
@@ -134,11 +134,11 @@
         "repos": {
             "swi-frontend": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information",
-                "contributions": 146,
-                "percentage": 60.33
+                "contributions": 151,
+                "percentage": 59.92
             }
         },
-        "contributions": 146,
+        "contributions": 151,
         "name": "josselinonduty",
         "type": "User"
     },
