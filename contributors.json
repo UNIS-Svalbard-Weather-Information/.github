@@ -5,8 +5,8 @@
         "repos": {
             "swi-frontend": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information",
-                "contributions": 101,
-                "percentage": 40.08
+                "contributions": 118,
+                "percentage": 43.87
             },
             "swi-metobs-backend": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-metobs-backend",
@@ -124,7 +124,7 @@
                 "percentage": 100.0
             }
         },
-        "contributions": 2275,
+        "contributions": 2292,
         "name": "LouisPauchet",
         "type": "User"
     },
@@ -135,7 +135,7 @@
             "swi-frontend": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information",
                 "contributions": 151,
-                "percentage": 59.92
+                "percentage": 56.13
             }
         },
         "contributions": 151,
