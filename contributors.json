@@ -110,8 +110,8 @@
             },
             "swi-avalanche-caching": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-avalanche-caching",
-                "contributions": 513,
-                "percentage": 98.84
+                "contributions": 515,
+                "percentage": 98.85
             },
             "swi-sentinel-processing": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-sentinel-processing",
@@ -124,7 +124,7 @@
                 "percentage": 100.0
             }
         },
-        "contributions": 2292,
+        "contributions": 2294,
         "name": "LouisPauchet",
         "type": "User"
     },
@@ -154,7 +154,7 @@
             "swi-avalanche-caching": {
                 "url": "https://github.com/UNIS-Svalbard-Weather-Information/swi-avalanche-caching",
                 "contributions": 6,
-                "percentage": 1.16
+                "percentage": 1.15
             }
         },
         "contributions": 18,
