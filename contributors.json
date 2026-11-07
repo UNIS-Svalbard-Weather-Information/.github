@@ -70,7 +70,7 @@
             },
             "Private repositories": {
                 "url": "https://github.com/svalbard-watch",
-                "contributions": 14,
+                "contributions": 26,
                 "percentage": 100.0
             },
             "swi-map-layers": {
@@ -124,7 +124,7 @@
                 "percentage": 100.0
             }
         },
-        "contributions": 2298,
+        "contributions": 2310,
         "name": "LouisPauchet",
         "type": "User"
     },
